@@ -1,28 +1,93 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+
+// const user = {
+//   firstName: 'Dương',
+//   lastName : 'Đỗ',
+//   email: 'duong@targeek.io',
+// }
+function getFullName(firstName, lastName)
+{
+    return firstName + ' ' +lastName
 }
+
+function getEmail(email)
+{
+  const check = <div  >{email}</div>
+  if (!email)
+  {
+    email = "Mail is empty"
+    const check = <div style = {{color:'red'}} >{email}</div>
+    return check
+  }{/*check email nếu rỗng thì sẽ thành chữ đỏ*/}
+  return check
+}
+
+// const App = ()=>{
+//     const firstName = "Thanh"
+//     const lastName = "Phuc"
+//     const element = <div style = {{
+//       backgroundColor:'green',
+//       color : 'yellow',
+//       padding: 8 + 8,
+//       margin: '20px '
+
+//     }}>Hello {getFullName(firstName,lastName)}</div>
+
+//     //html: style="background-color: green; color: red; padding:8px"
+
+//     const welcome = <div >welcome message: {element}</div>
+
+//     return welcome
+//}
+
+
+  function User(props){
+    const userse = props.user
+     const element = (<div>
+      <div style ={{color: 'red' , fontSize: 22}}>
+          {getFullName(userse.firstName,userse.lastName)}
+      </div>
+      
+    <div style={{fontStyle: userse.email ? 'inital' : 'italic', color:'green'}}>{/*check email nếu rỗng thì để in nghiêng */}
+        {
+          
+          getEmail(userse.email )
+        }
+    </div>
+    </div>)
+    return element
+  }
+
+  const users = [
+    {
+      firstName: 'Dương',
+      lastName: 'Đỗ',
+      email: 'duong@gmail.com'
+    },
+    {
+      firstName: 'Trump',
+      lastName: 'Donald',
+      email: 'TrumpTA3'
+    },
+    {
+      firstName: 'phuc',
+      lastName: 'thanh',
+    }
+  ]
+
+  function App(){
+    const element = users.map(u => {
+      return <User
+      user={u}/>
+    })
+    return element
+  }
+  
+
+//USE function ARRAY.MAP
+
+
 
 export default App;
