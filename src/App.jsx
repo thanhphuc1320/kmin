@@ -1,40 +1,37 @@
 import React from 'react'
 import Counter from './Counter'
 
-function changeStyles(value)
-{
-  const check = <div> {value} </div>
-  if (value === 0)
-    {
-      const check = <div style = {{color: 'black'}}></div>
-      return check;
-    }
-  else if (value < 0)
-  {
-    const check = <div style = {{color:'red'}}></div>
-    return check;
+class App extends React.Component {
+  state = { showCounter: true }
+  handleToggleCounter = () =>
+    this.setState({ showCounter: !this.state.showCounter })
+  render() {
+    return (
+      <div>
+        {this.state.showCounter ? (
+          <div>
+            <Counter
+              name="Counter 1"
+              initialDelta={4}
+              initialAutoIncreaseOn={false}
+            />
+            <Counter
+              name="Counter 2"
+              initialDelta={10}
+              initialAutoIncreaseOn={true}
+            />
+          </div>
+        ) : null}
+
+        <button onClick={this.handleToggleCounter}>
+          {this.state.showCounter ? 'Hide' : 'Show'} counter
+        </button>
+      </div>
+    )
   }
-
-  else if (value > 0)
-  {
-    const check = <div style = {{color:'green'}}></div>
-    return check;
-  }
-  return check;
-
-}
-function App()
-{
-  
-  return <Counter />
 }
 
-export default App;
-
-
-
-
-
+export default App
 
 // // const user = {
 // //   firstName: 'Dương',
@@ -76,17 +73,16 @@ export default App;
 // //     return welcome
 // //}
 
-
 //   function User(props){
 //     const userse = props.user
 //      const element = (<div>
 //       <div style ={{color: 'red' , fontSize: 22}}>
 //           {getFullName(userse.firstName,userse.lastName)}
 //       </div>
-      
+
 //     <div style={{fontStyle: userse.email ? 'inital' : 'italic', color:'green'}}>{/*check email nếu rỗng thì để in nghiêng */}
 //         {
-          
+
 //           getEmail(userse.email )
 //         }
 //     </div>
@@ -118,10 +114,7 @@ export default App;
 //     })
 //     return element
 //   }
-  
 
 // //USE function ARRAY.MAP
-
-
 
 // export default App;
